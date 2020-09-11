@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID19 Stats</title>
+</head>
+<body>
+<select name="country" id="country" onchange="javascript:location.href = this.value;">
+    {% for item in covid_countries %}
+        <option value="/{{ item['Slug'] }}">{{ item['Country'] }}</option>
+    {% endfor %}
+</select>
+Hello User from {{country_uri}}
+</body>
+</html>
