@@ -20,3 +20,7 @@ https://covid19api.com/ - For data per country statistics
 
 4. Application should be available at http://localhost:5000/
 
+
+Live demo of the app: http://covid.pingtool.org
+
+o7
