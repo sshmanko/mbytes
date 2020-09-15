@@ -80,7 +80,8 @@ def get_country(country):
 
 @app.route('/')
 def get_root():
-    country_code = ip_to_country(request.remote_addr)['country_code']
+    ip=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    country_code = ip_to_country(ip)['country_code']
     return redirect(f'/{country_code}', code=302)
 
 
