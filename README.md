@@ -1,5 +1,9 @@
 This is a demo app for COVID-19 cases statistics per country.
 
+
+**Live demo: http://covid.pingtool.org**
+
+
 It uses 2 free APIs:
 https://ipwhois.io/ - For country autodetection by IP address
 https://covid19api.com/ - For data per country statistics
@@ -20,7 +24,5 @@ https://covid19api.com/ - For data per country statistics
 
 4. Application should be available at http://localhost:5000/
 
-
-Live demo of the app: http://covid.pingtool.org
 
 o7
