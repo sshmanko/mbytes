@@ -5,8 +5,9 @@ This is a demo app for COVID-19 cases statistics per country.
 
 
 It uses 2 free APIs:
-https://ipwhois.io/ - For country autodetection by IP address
-https://covid19api.com/ - For data per country statistics
+
+- https://ipwhois.io/ - For country autodetection by IP address
+- https://covid19api.com/ - For data per country statistics
 
 # Installation
 
