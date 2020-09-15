@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>COVID19 Stats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-Hello User from {{country_uri}}
+<center><p>COVID-19 Statistics for:<br><select id="country" name="country" onchange="javascript:location.href = this.value;">
+    {% for item in covid_countries %}
+        {% if country_name == item['Country'] %}
+            <option selected value="/{{ item['ISO2'] }}">{{ item['Country'] }}</option>
+        {% else %}
+            <option value="/{{ item['ISO2'] }}">{{ item['Country'] }}</option>
+        {% endif %}
+    {% endfor %}
+</select></p>
+    <p>{{ text|safe }}</p>
+<canvas height="600" id="myChart" width="800"></canvas>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ graph_data_y|tojson }},
+        datasets: [{
+            label: 'Active COVID-19 cases in {{ country_name }}',
+            data: {{ graph_data_x|tojson }},
+            backgroundColor: 'rgba(255, 179, 84, 0.2)',
+            borderColor: 'rgba(255, 159, 64, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+    responsive: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 </body>
 </html>
