@@ -18,12 +18,12 @@ def api_request(url, timeout=1):
 
 
 def ip_to_country(ip):
-    country = {}
-    if ip == '127.0.0.1':  # ipwhois.info treats 127.0.0.1 as Singapore
-        country['country'] = 'United States'
-        country['country_code'] = 'US'
-    else:
-        country = api_request(f'http://ipwhois.app/json/{ip}')
+    country = api_request(f'https://ipwhois.app/json/{ip}', 3)
+    if ip == '127.0.0.1' or not country['country']:  # ipwhois.info treats 127.0.0.1 as Singapore
+        country = {
+            'country': 'United States',
+            'country_code': 'US'
+        }
 
     return country
 
@@ -80,7 +80,7 @@ def get_country(country):
 
 @app.route('/')
 def get_root():
-    ip=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     country_code = ip_to_country(ip)['country_code']
     return redirect(f'/{country_code}', code=302)
 
